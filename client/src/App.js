@@ -43,6 +43,7 @@ class App extends Component {
         </div>
 
         <nav>
+          <span className="logo">chatter.</span>
           <input value={ this.state.username } onChange={ this.onChangeUsername } placeholder="Enter a username" />
           <input value={ this.state.secret } onChange={ this.onChangeSecret } placeholder="Enter your secret key" />
         </nav>

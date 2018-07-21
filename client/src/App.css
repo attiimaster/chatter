@@ -23,6 +23,13 @@ nav {
 nav input {
   font-size: 24px;
 }
+.logo {
+  font-size: 31px;
+  font-style: oblique;
+  position: absolute;
+  left: 2%;
+
+}
 .overlay {
   display: flex;
   height: 0vh;
