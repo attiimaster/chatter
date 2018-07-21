@@ -1,0 +1,15 @@
+.message {
+	margin: 10px 0;
+	text-align: left;
+}
+.message .time {
+}
+.message .username {
+	font-weight: bold;
+	margin-left: 10px;
+}
+.message .text {
+	order: 1px solid red;
+	display: block;
+	padding: 0 20px;
+}
