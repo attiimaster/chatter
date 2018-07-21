@@ -11,9 +11,10 @@ export const decrypt = (text, key) => {
 }
 
 export const encrypt = (text, key) => {		
-    const encrypted = CryptoJS.AES.encrypt(text, key);
+    const encrypted = CryptoJS.AES.encrypt(text, key).toString();
+    
     // error handling
     
-    console.log(encrypted.toString());
-	return encrypted.toString();
+    console.log(encrypted);
+	return encrypted;
 }

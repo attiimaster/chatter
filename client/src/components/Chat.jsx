@@ -28,13 +28,24 @@ class Chat extends Component {
     }
 
     this.sendMessage = (e) => {
-      e.preventDefault();
-      const encMsg = encrypt(this.state.message, this.props.secret);
       this.socket.emit('SEND_MESSAGE_REQ', {
-        message: encMsg,
+        message: encrypt(this.state.message, this.props.secret),
         username: this.props.username
       });
-      this.setState({ message: '' });
+    }
+
+    this.handleSubmit = (e) => {
+      e.preventDefault();
+      console.log(this.props.username !== "")
+      if (this.props.username !== "" && this.props.secret !== "") {
+        this.sendMessage(e);
+        this.setState({ message: '' });
+      } else {
+        const el = document.querySelector(".error-overlay");
+        el.className += " error-overlay-active";
+        setTimeout(() => el.className = "overlay error-overlay", 2000);
+        return;
+      }
     }
 
     this.handleTest = (e) => {
@@ -53,7 +64,7 @@ class Chat extends Component {
         <MessagesContainer messages={ this.state.messages } />
 
         <FormContainer 
-          onSubmit={ this.sendMessage } 
+          onSubmit={ this.handleSubmit } 
           onChange={ (e) => this.setState({ message: e.target.value }) } 
           value={ this.state.message } />
       </div>
