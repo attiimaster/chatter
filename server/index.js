@@ -19,7 +19,7 @@ console.log("Node listening on " + config.port + ".");
 
 const io = socket(server);
 
-io.use((socket, next) => { console.log("middleware: ", socket); next(); });
+io.use((socket, next) => { console.log("middleware: ", "socket"); next(); });
 
 io.on("connection", (socket) => {
 	console.log(socket.id + " connected.");

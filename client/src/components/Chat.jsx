@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
-import CryptoJS from "crypto-js";
 import './css/Chat.css';
 
 import MessagesContainer from "./MessagesContainer";
 import FormContainer from "./FormContainer";
+import { encrypt, decrypt } from "../crypto.js";
 
 class Chat extends Component {
   constructor(props) {
@@ -17,7 +17,10 @@ class Chat extends Component {
 
     this.socket = io("localhost:3001", { query: { variable: "variable" } });
 
-    this.socket.on('SEND_MESSAGE_RES', (data) => addMessage(data));
+    this.socket.on('SEND_MESSAGE_RES', (data) => {
+      data.message = decrypt(data.message, this.props.secret);
+      addMessage(data);
+    });
     this.socket.on("TEST_RES", (data) => console.log(data));
 
     const addMessage = (data) => {
@@ -26,8 +29,9 @@ class Chat extends Component {
 
     this.sendMessage = (e) => {
       e.preventDefault();
+      const encMsg = encrypt(this.state.message, this.props.secret);
       this.socket.emit('SEND_MESSAGE_REQ', {
-        message: this.state.message,
+        message: encMsg,
         username: this.props.username
       });
       this.setState({ message: '' });
@@ -40,17 +44,7 @@ class Chat extends Component {
     }
 
   }
-  componentDidMount() {
-    const text = "Secret Message!";
-    const key = "secretKey";
-
-    const encrypted = CryptoJS.AES.encrypt(text, key);
-    console.log(encrypted)
-
-    const bytes = CryptoJS.AES.decrypt(encrypted.toString(), key);
-    const decrypted = bytes.toString(CryptoJS.enc.Utf8);
-    console.log(decrypted)
-  }
+  componentDidMount() {}
 
   render() {
     return (
