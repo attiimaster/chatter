@@ -2,7 +2,7 @@ const express = require("express");
 const socket = require("socket.io");
 const config = require("./config.js");
 
-const history = [];
+let users = [];
 const app = express();
 
 app.use((req, res, next) => {
@@ -13,6 +13,7 @@ app.use((req, res, next) => {
   	next();
 });
 
+setInterval(() => console.log("Connected Users: ", users), 5000);
 
 const server = app.listen(config.port);
 console.log("Node listening on " + config.port + ".");
@@ -23,6 +24,8 @@ io.use((socket, next) => { console.log("middleware: ", "socket"); next(); });
 
 io.on("connection", (socket) => {
 	console.log(socket.id + " connected.");
+	users.push(socket.id);
+  	io.emit("connection_RES", serverMessage("A user connected...", users));
 
 	socket.on('SEND_MESSAGE_REQ', (data) => {
   		console.log(data);
@@ -34,7 +37,10 @@ io.on("connection", (socket) => {
   	})
 
 	socket.on("disconnect", () => {
-		console.log(socket.id + " disconnected.")
+		console.log(socket.id + " disconnected.");
+		const i = users.indexOf(socket.id);
+		if (i>-1) { users.splice(i, 1); }
+  		io.emit("disconnect_RES", serverMessage("A user disconnected...", users));
 	})
 
 	socket.on("error", (err) => {
@@ -42,3 +48,13 @@ io.on("connection", (socket) => {
 		console.log(err);
 	})
 })
+
+const serverMessage = (str, users) => {
+	const msg = {
+		username: "SERVER",
+		message: str, 
+		time: Date().slice(16, 24),
+		users,
+	}
+	return msg;
+}

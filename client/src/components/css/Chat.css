@@ -1,14 +1,13 @@
 .chat {
-}
-.messages {
-	height: 90vh;
-	padding: 3vh 5px 3vh 5px;
+	box-sizing: border-box;
 }
 .form {
 	background: #eee;
+	box-sizing: border-box;
 	box-shadow: 0px 0px 7px 1px #777;
 	font-size: 24px;
 	padding: 5px;
+
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -16,4 +15,21 @@
 }
 .form input, .form button {
 	font-size: 24px;
+}
+
+
+
+@media (max-width: 676px) {
+	.form input, .form button {
+		font-size: 18px;
+	}		
+}
+
+/*-------------MESSAGESCONTAINER-----------------*/
+
+
+.messages {
+	height: 55vh;
+	padding-bottom: 13%;
+	overflow-y: scroll;
 }

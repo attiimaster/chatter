@@ -1,6 +1,11 @@
 .message {
-	margin: 10px 0;
+	border-top: 1px solid #eee;
+	font-size: 90%;
+	margin: 0 auto;
+	padding: 5px 0;
 	text-align: left;
+	max-width: 600px;
+	width: 90%;
 }
 .message .time {
 }
@@ -9,7 +14,10 @@
 	margin-left: 10px;
 }
 .message .text {
-	order: 1px solid red;
-	display: block;
 	padding: 0 20px;
+	width: 78%;
+}
+.server-message {
+	color: tomato;
+	font-size: 70%;
 }

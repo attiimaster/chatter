@@ -28,26 +28,10 @@ class App extends Component {
     return (
       <div className="App">
 
-        <div className="overlay error-overlay">
-        <div>
-          <h4>You have to provide a username and a secret. Just enter one above.</h4>
-        </div>
-        </div>
-
-        <div className="overlay start-overlay">
-        <div>
-          <h1>chatter</h1>
-          <h2>Message secretly with anyone.</h2>
-          <h4>You have to provide a username and a secret. Just enter one above.</h4>
-        </div>
-        </div>
-
-        <nav>
-          <span className="logo">chatter.</span>
-          <input value={ this.state.username } onChange={ this.onChangeUsername } placeholder="Enter a username" />
-          <input value={ this.state.secret } onChange={ this.onChangeSecret } placeholder="Enter your secret key" />
-        </nav>
-
+        <ErrorOverlay />
+        <StartOverlay />
+        
+        <NavBar value={{ username: this.state.username, secret: this.state.secret }} onChange={{ username: this.onChangeUsername, secret: this.onChangeSecret }}/>
         <Chat username={ username } secret={ secret } />
 
       </div>
@@ -56,3 +40,37 @@ class App extends Component {
 }
 
 export default App;
+
+
+const NavBar = (props) => {
+  const { value, onChange } = props;
+  return (
+    <nav>
+      <span className="logo">chatter.</span>
+      <div className="inputs">
+        <input value={ value.username } onChange={ onChange.username } placeholder="Enter a username" />
+        <input value={ value.secret } onChange={ onChange.secret } placeholder="Enter your secret key" />
+      </div>
+    </nav>
+  );
+}
+const ErrorOverlay = () => {
+  return (
+    <div className="overlay error-overlay">
+      <div>
+        <h4>You have to provide a username and a secret. Just enter one above.</h4>
+      </div>
+    </div>
+    );
+}
+const StartOverlay = () => {
+  return (
+    <div className="overlay start-overlay">
+      <div>
+        <h1>chatter</h1>
+        <h2>Message secretly with anyone.</h2>
+        <h4>You have to provide a username and a secret. Just enter one above.</h4>
+      </div>
+    </div>
+    );
+}

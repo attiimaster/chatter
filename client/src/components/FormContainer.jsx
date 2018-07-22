@@ -6,8 +6,8 @@ const FormContainer = (props) => {
 
 	return (
         <div className="form">
-          <form onSubmit={ onSubmit } className="form">
-            <input type="text" placeholder="Message" className="form-control" value={ value } onChange={ onChange }/>
+          <form onSubmit={ onSubmit }>
+            <input type="text" placeholder="Message" className="form-control" value={ value } onChange={ onChange } required />
             <button type="submit" className="btn btn-primary form-control">Send</button>
           </form>
         </div>
