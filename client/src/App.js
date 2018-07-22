@@ -8,7 +8,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = { username: "", secret: "" };   // needs to be undefined
-    this.isAuth = () => {
+    this.isAuth = () => { // if state is undefined
       console.log(this.state.username)
       return !this.state.username ? "overlay overlay-hidden" : "overlay"  // remove !
     }
@@ -30,8 +30,8 @@ class App extends Component {
 
         <ErrorOverlay />
         <StartOverlay />
-        
-        <NavBar value={{ username: this.state.username, secret: this.state.secret }} onChange={{ username: this.onChangeUsername, secret: this.onChangeSecret }}/>
+
+        <NavBar value={{ username, secret }} onChange={{ username: this.onChangeUsername, secret: this.onChangeSecret }}/>
         <Chat username={ username } secret={ secret } />
 
       </div>

@@ -70,15 +70,17 @@ class Chat extends Component {
   componentDidMount() {}
 
   render() {
+    const { message, messages, users } = this.state;
     return (
       <div className="chat">
         <button onClick={ this.handleTest }>TEST</button>
-        <OnlineUsers users={ this.state.users } />
-        <MessagesContainer messages={ this.state.messages } />
+        <OnlineUsers users={ users } />
+        
+        <MessagesContainer messages={ messages } />
         <FormContainer 
           onSubmit={ this.handleSubmit } 
           onChange={ (e) => this.setState({ message: e.target.value }) } 
-          value={ this.state.message } />
+          value={ message } />
       </div>
     );
   }
