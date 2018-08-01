@@ -13,14 +13,25 @@ if (message.username === "SERVER") {
           	<span className="text">{ message.message }</span>
         </div>
 	);
-} else {
-	return (
-        <div className="message" >
-          	<span className="time">({ message.time })</span> 
-          	<span className="username">{ message.username }:</span> 
-          	<div className="text">{ message.message }</div>
+} else if (message.username && props.user && message.username === props.user) {
+  return (
+        <div className="message message-left" >
+            <span className="time">({ message.time })</span> 
+            <span className="username">{ message.username }:</span> 
+            <div className="text">{ message.message }</div>
         </div>
-	);
+  );
+} else if (message.username && message.username !== props.user) {
+  return (
+        <div className="message message-right" >
+            <span className="time">({ message.time })</span> 
+            <span className="username">{ message.username }:</span> 
+            <div className="text">{ message.message }</div>
+        </div>
+  );
+} else {
+  console.error("ERROR: ", "MessageBox");
+  return (<div>ERROR WITH MESSAGE</div>);
 }
 }
 

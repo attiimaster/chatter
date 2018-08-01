@@ -76,7 +76,7 @@ class Chat extends Component {
         <button onClick={ this.handleTest }>TEST</button>
         <OnlineUsers users={ users } />
         
-        <MessagesContainer messages={ messages } />
+        <MessagesContainer messages={ messages } user={ this.props.username } />
         <FormContainer 
           onSubmit={ this.handleSubmit } 
           onChange={ (e) => this.setState({ message: e.target.value }) } 

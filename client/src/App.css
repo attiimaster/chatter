@@ -11,17 +11,23 @@ body {
 }
 input, button {
   border: none;
+  border-radius: 2px;
   margin: 2px;
   padding: 2px 5px;
+}
+button {
+  background: white;
 }
 .App {
   text-align: center;
 }
 nav {
-  background: #eee;
-  box-shadow: 0px 0px 7px 1px #777;
+  background: rgb(150, 200, 150);
+  box-shadow: 0px 0px 4px 1px #999;
   display: flex;
   padding: 5px;
+  position: relative;
+  z-index: 2;
 }
 nav .inputs {
   margin: auto 0 auto auto;
@@ -30,8 +36,11 @@ nav .inputs {
   font-size: 24px;
 }
 .logo {
+  color: white;
+  font-family: raleway;
   font-size: 31px;
   font-style: oblique;
+  font-weight: 600;
   margin: auto auto auto 0;
 
 }
@@ -77,4 +86,7 @@ nav .inputs {
   nav {
     text-align: right;
   }   
+  .logo {
+    font-size: 26px;
+  }
 }

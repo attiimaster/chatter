@@ -8,7 +8,7 @@ const MessagesContainer = (props) => {
 
 	return (
         <div className="messages">
-          { messages.map((message, i) => <MessageBox message={ message } key={i} />) }
+          { messages.map((message, i) => <MessageBox user={ props.user } message={ message } key={i} />) }
         </div>
 	);
 }

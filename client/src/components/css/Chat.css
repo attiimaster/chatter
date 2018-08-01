@@ -1,7 +1,14 @@
-.chat {}
-.form {
+.chat {
 	background: #eee;
-	box-shadow: 0px 0px 7px 1px #777;
+	margin: 0 auto;
+	max-width: 800px;
+	padding: 2vh 0;
+	width: 98%;
+
+}
+.form {
+  	background: rgb(150, 200, 150);
+  	box-shadow: 0px 0px 4px 1px #999;
 	font-size: 24px;
 	padding: 5px;
 
@@ -12,6 +19,10 @@
 }
 .form input, .form button {
 	font-size: 24px;
+}
+.form input {
+	max-width: 80%;
+	width: 300px;
 }
 
 
@@ -26,7 +37,6 @@
 
 
 .messages {
-	height: 55vh;
-	padding-bottom: 13%;
+	height: 84vh;
 	overflow-y: scroll;
 }
